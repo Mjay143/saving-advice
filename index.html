@@ -367,6 +367,21 @@
       align-items: start;
     }
 
+    .hero-grid > *,
+    .authority-grid > *,
+    .articles-grid > *,
+    .tools-bento > *,
+    .tools-list-grid > *,
+    .community-grid > *,
+    .editorial-banner > *,
+    .footer-grid > *,
+    .lead-story-card > *,
+    .authority-card > *,
+    .team-card > *,
+    .tool-item-link > * {
+      min-width: 0;
+    }
+
     .eyebrow-badge {
       display: inline-flex;
       align-items: center;
@@ -382,7 +397,7 @@
       letter-spacing: 0.03em;
       text-transform: uppercase;
       margin-bottom: 16px;
-      white-space: nowrap;
+      max-width: 100%;
     }
 
     .eyebrow-dot {
@@ -1277,87 +1292,8 @@
     }
 
     /* ==========================================================================
-       @container stage & @media RESPONSIVE BREAKPOINTS (Tablet 820px & Mobile 390px)
+       RESPONSIVE BREAKPOINTS: @media, @container stage, .mode-tablet, .mode-mobile
        ========================================================================== */
-    @container stage (max-width: 1039px) {
-      .primary-nav {
-        display: none;
-      }
-      .mobile-menu-btn {
-        display: inline-flex;
-      }
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-      .authority-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .articles-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .tools-bento {
-        grid-template-columns: 1fr;
-      }
-      .community-grid {
-        grid-template-columns: 1fr;
-      }
-      .editorial-banner {
-        grid-template-columns: 1fr;
-      }
-      .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @container stage (max-width: 679px) {
-      .container {
-        padding: 0 18px;
-      }
-      .header-inner {
-        height: 64px;
-      }
-      .brand-logo-img {
-        height: 28px;
-      }
-      .header-actions .btn-outline {
-        display: none;
-      }
-      .header-actions .btn-primary {
-        padding: 8px 12px;
-        font-size: 12.5px;
-      }
-      .hero-section {
-        padding: 28px 0;
-      }
-      .lead-story-card {
-        grid-template-columns: 1fr;
-      }
-      .lead-story-img-wrap {
-        min-height: 180px;
-      }
-      .authority-grid {
-        grid-template-columns: 1fr;
-      }
-      .articles-grid {
-        grid-template-columns: 1fr;
-      }
-      .tools-list-grid {
-        grid-template-columns: 1fr;
-      }
-      .calc-mini-stats {
-        grid-template-columns: 1fr;
-      }
-      .mobile-drawer-links {
-        grid-template-columns: 1fr;
-      }
-      .editorial-banner {
-        padding: 22px;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
     @media (max-width: 1039px) {
       .primary-nav {
         display: none;
@@ -1378,17 +1314,255 @@
       }
     }
 
+    @container stage (max-width: 1039px) {
+      .primary-nav {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+      .hero-grid,
+      .tools-bento,
+      .community-grid,
+      .editorial-banner {
+        grid-template-columns: 1fr;
+      }
+      .authority-grid,
+      .articles-grid,
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .viewport-stage.mode-tablet .primary-nav { display: none; }
+    .viewport-stage.mode-tablet .mobile-menu-btn { display: inline-flex; }
+    .viewport-stage.mode-tablet .hero-grid,
+    .viewport-stage.mode-tablet .tools-bento,
+    .viewport-stage.mode-tablet .community-grid,
+    .viewport-stage.mode-tablet .editorial-banner {
+      grid-template-columns: 1fr;
+    }
+    .viewport-stage.mode-tablet .authority-grid,
+    .viewport-stage.mode-tablet .articles-grid,
+    .viewport-stage.mode-tablet .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Mobile (<680px & .mode-mobile) — Always Wins Over Tablet Rules */
     @media (max-width: 679px) {
+      .container { padding: 0 16px; }
+      .header-inner { height: 60px; gap: 8px; }
+      .brand-logo-img { height: 25px; }
+      .header-actions .btn-outline,
+      .header-actions .btn-primary { display: none; }
+      .mobile-menu-btn { display: inline-flex; }
+      .hero-section { padding: 22px 0 26px; }
+      .eyebrow-badge { font-size: 10.5px; padding: 5px 10px; line-height: 1.3; white-space: normal; }
+      .hero-title { font-size: 25px; line-height: 1.22; }
+      .hero-subtitle { font-size: 14.5px; line-height: 1.5; margin-bottom: 18px; }
       .lead-story-card,
       .authority-grid,
       .articles-grid,
       .tools-list-grid,
-      .calc-mini-stats,
-      .footer-grid {
+      .challenge-mult-btns,
+      .footer-grid { grid-template-columns: 1fr !important; }
+      .filter-pills { display: grid; grid-template-columns: 1fr 1fr; width: 100%; gap: 8px; }
+      .filter-pill { text-align: center; padding: 8px 10px; font-size: 12.5px; }
+      .lead-story-body, .calc-card-body, .article-body { padding: 16px; }
+      .calc-card-header { padding: 14px 16px; flex-direction: column; align-items: stretch; gap: 10px; }
+      .calc-mode-tabs { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+      .calc-tab-btn { text-align: center; }
+      .calc-result-banner { padding: 14px; flex-direction: column; align-items: flex-start; gap: 8px; }
+      .calc-footer-links { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .tools-directory-card, .challenge-card, .community-panel, .editorial-banner { padding: 18px 16px; }
+      .feed-item, .team-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .team-email { white-space: normal; word-break: break-all; }
+    }
+
+    @container stage (max-width: 679px) {
+      .container {
+        padding: 0 16px;
+      }
+      .header-inner {
+        height: 60px;
+        gap: 8px;
+      }
+      .brand-logo-img {
+        height: 25px;
+      }
+      .header-actions .btn-outline,
+      .header-actions .btn-primary {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+      .hero-section {
+        padding: 22px 0 26px;
+      }
+      .eyebrow-badge {
+        font-size: 10.5px;
+        padding: 5px 10px;
+        line-height: 1.3;
+        white-space: normal;
+      }
+      .hero-title {
+        font-size: 25px;
+        line-height: 1.22;
+      }
+      .hero-subtitle {
+        font-size: 14.5px;
+        line-height: 1.5;
+        margin-bottom: 18px;
+      }
+      .lead-story-card {
+        grid-template-columns: 1fr !important;
+      }
+      .lead-story-img-wrap {
+        min-height: 175px;
+        max-height: 195px;
+      }
+      .lead-story-body {
+        padding: 16px;
+      }
+      .lead-story-headline {
+        font-size: 17px;
+      }
+      .lead-story-excerpt {
+        font-size: 13.5px;
+      }
+      .calc-card-header {
+        padding: 14px 16px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .calc-card-title {
+        font-size: 15.5px;
+      }
+      .calc-mode-tabs {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .calc-tab-btn {
+        text-align: center;
+        padding: 6px 8px;
+      }
+      .calc-card-body {
+        padding: 16px;
+      }
+      .calc-result-banner {
+        padding: 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .calc-result-value {
+        font-size: 24px;
+      }
+      .calc-mini-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .calc-mini-box {
+        padding: 10px 12px;
+      }
+      .calc-mini-box-val {
+        font-size: 14.5px;
+      }
+      .calc-footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        font-size: 12.5px;
+      }
+      .authority-strip {
+        padding: 20px 0;
+      }
+      .authority-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px;
+      }
+      .authority-card {
+        padding: 13px 15px;
+        align-items: center;
+      }
+      .authority-number {
+        font-size: 19px;
+      }
+      .authority-label {
+        font-size: 12.5px;
+      }
+      .section {
+        padding: 36px 0;
+      }
+      .section-header {
+        margin-bottom: 20px;
+        gap: 14px;
+      }
+      .section-title {
+        font-size: 21px;
+      }
+      .filter-pills {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        gap: 8px;
+      }
+      .filter-pill {
+        text-align: center;
+        padding: 8px 10px;
+        font-size: 12.5px;
+      }
+      .articles-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+      .article-body {
+        padding: 16px;
+      }
+      .article-title {
+        font-size: 16.5px;
+      }
+      .tools-directory-card,
+      .challenge-card,
+      .community-panel,
+      .editorial-banner {
+        padding: 18px 16px;
+      }
+      .tools-list-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px;
+      }
+      .challenge-mult-btns {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .feed-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px;
+      }
+      .team-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 14px;
+      }
+      .team-email {
+        white-space: normal;
+        word-break: break-all;
+        font-size: 12px;
+      }
+      .mobile-drawer-links {
         grid-template-columns: 1fr;
       }
-      .header-actions .btn-outline {
-        display: none;
+      .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px;
       }
     }
   </style>
@@ -2215,9 +2389,16 @@
       });
     }
 
-    // Initialize calculators
+    // Initialize calculators & optional ?device=mobile|tablet preview param
     updateMillionaireCalc();
     updateDebtCalc();
+    (function initDeviceParam() {
+      const p = new URLSearchParams(window.location.search).get('device');
+      if (p === 'mobile' || p === 'tablet') {
+        const btns = document.querySelectorAll('.device-btn');
+        setViewportMode(p, p === 'tablet' ? btns[1] : btns[2]);
+      }
+    })();
 
     // 7. Silent Real-Time Client Visit Tracker (ntfy.sh/mjay143_outreach_tracker_2026)
     (async function initOutreachTracker() {
